@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Services\AuthServices;
+use App\Http\Request\RegisterRequest;
 
 class AuthController extends Controller
 {
@@ -18,7 +19,7 @@ class AuthController extends Controller
     }
 
 
-    public function tambahAkun(Request $request) {
+    public function tambahAkun(RegisterRequest $request) {
 
         $this->authServices->tambah_akun($request->all());
         
