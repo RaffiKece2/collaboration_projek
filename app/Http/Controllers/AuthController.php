@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Services\AuthServices;
-use App\Http\Request\RegisterRequest;
-
+use App\Http\Requests\RegisterRequest;
 class AuthController extends Controller
 {
 

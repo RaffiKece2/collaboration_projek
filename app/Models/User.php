@@ -16,7 +16,9 @@
 
             'name',
             'email',
-            'password'
+            'password',
+            'role',
+            'gambar'
 
         ];
 

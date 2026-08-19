@@ -14,6 +14,14 @@
 
     <form id="registerPage">
 
+        <p>Pilih Role: </p>
+        <select id="role">
+            <option value="siswa">Siswa</option>
+            <option value="guru">Guru</option>
+            <option value="admin">Admin</option>
+            <option value="superadmin">Super Admin</option>
+        </select>
+
         <p>Nama: </p>
         <input id="nama" placeholder="Nama..." type="text">
         <p id="errorNama"></p>

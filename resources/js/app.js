@@ -11,6 +11,7 @@ registerPage.addEventListener('submit', async function (e) {
     const nama = document.getElementById('nama').value
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
+    const role = document.getElementById('role').value
 
     const response = await fetch('/register', {
 
@@ -31,7 +32,8 @@ registerPage.addEventListener('submit', async function (e) {
 
             nama: nama,
             email: email,
-            password: password
+            password: password,
+            role : role
 
             
         })
@@ -40,7 +42,7 @@ registerPage.addEventListener('submit', async function (e) {
     })
 
 
-    const jawaban = response.json();
+    const jawaban = await response.json();
 
     if (jawaban.ok) {
         document.getElementById('notif').textContent = "Register Berhasil"

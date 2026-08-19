@@ -13,6 +13,7 @@
                 'name' => $data['nama'],
                 'email' => $data['email'],
                 'password' => $data['password'],
+                'role' => $data['role']
                 
             ];
 
