@@ -38,6 +38,52 @@ class AuthController extends Controller
 
     }
 
+    public function editProfile( $id,Request $request) {
+
+        $file = $request->file('foto');
+
+        $path = $file->store('profile','public');
+
+        $this->authServices->edit_profile($id,$request->all(), $path);
+
+        return response()->json([
+
+            'ok' => true
+
+        ]);
+
+
+    }
+
+    public function logout(Request $request) {
+
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+
+            'ok' => true
+
+        ]);
+
+    }
+
+    public function changePassword(Request $request) {
+
+        $user = $request->user();
+
+
+        $this->authServices->change_password($user, $request->all());
+
+        return response()->json([
+
+            'ok' => true
+
+        ]);
+
+    
+
+    }
+
     
 
     //
