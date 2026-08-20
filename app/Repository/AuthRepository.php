@@ -22,6 +22,12 @@
 
         }
 
+        public function getAkunByEmail($email) {
+
+            return User::where('email', $email)->first();
+
+        }
+
 
     }
 

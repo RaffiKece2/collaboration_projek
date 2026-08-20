@@ -7,6 +7,7 @@
     use Illuminate\Support\Facades\Hash;
 
 
+
     class AuthServices {
 
         protected AuthRepository $authRepository;
@@ -23,6 +24,31 @@
             $data['password'] = Hash::make($data['password']);
 
             return $this->authRepository->daftarAkun($data);
+
+        }
+
+        public function daftar_akun(array $data) {
+
+
+            $user = $this->authRepository->getAkunByEmail($data['email']);
+
+            if ($user || Hash::check($data['password'], $user->password)) {
+
+                return response()->json([
+
+                    'ok' => true,
+                    'token' => $user->createToken('login-token')->plainTextToken
+
+                ]);
+
+            }
+
+            return response()->json([
+
+                'ok' => false
+
+            ]);
+
 
         }
 

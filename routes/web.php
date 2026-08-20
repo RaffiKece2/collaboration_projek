@@ -11,3 +11,12 @@ Route::get('/', function () {
 Route::get('/register', [AuthController::class, 'tambahAkun']);
 Route::post('/register', [AuthController::class, 'tambahAkun']);
 
+Route::get('/loginPage', function () {
+
+    return view('login');
+
+});
+
+Route::get('/login', [AuthController::class, 'daftarAkun']);
+Route::post('/login', [AuthController::class, 'daftarAkun']);
+
