@@ -20,7 +20,7 @@ Route::get('/loginPage', function () {
 Route::get('/login', [AuthController::class, 'daftarAkun']);
 Route::post('/login', [AuthController::class, 'daftarAkun']);
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard_siswa', function () {
 
     return view('dashboard');
 

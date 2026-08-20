@@ -34,7 +34,7 @@ loginPage.addEventListener('submit', async function (e) {
         localStorage.setItem('token',jawaban.token);
         document.getElementById('notif').textContent = "login berhasil!!"
 
-        window.location.href = '/dashboard';
+        window.location.href = '/dashboard_siswa';
     }else {
 
         if (jawaban.errors?.email) {
