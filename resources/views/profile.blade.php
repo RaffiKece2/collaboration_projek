@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Profile</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 
-    <h1>Dashboard</h1>
+    <div>
 
+        <h1 id="namaUser"></h1>
+        <p id="roleUser"></p>
 
-    <h2 id="judul"></h2>
+    </div>
 
-    <form action="/profile">
-
-        <button>Profile</button>
-
-
+    <form action="/dashboard_siswa">
+        <button>Dashboard</button>
     </form>
 
 
-    @vite('resources/js/dashboard.js')
+    @vite('resources/js/profile.js')
+
+
+
+
+
+
     
 </body>
 </html>

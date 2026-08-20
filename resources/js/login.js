@@ -35,6 +35,7 @@ loginPage.addEventListener('submit', async function (e) {
         document.getElementById('notif').textContent = "login berhasil!!"
 
         window.location.href = '/dashboard_siswa';
+        
     }else {
 
         if (jawaban.errors?.email) {
