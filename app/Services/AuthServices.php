@@ -37,7 +37,8 @@
                 return response()->json([
 
                     'ok' => true,
-                    'token' => $user->createToken('login-token')->plainTextToken
+                    'token' => $user->createToken('login-token')->plainTextToken,
+                    'data' => $user
 
                 ]);
 
