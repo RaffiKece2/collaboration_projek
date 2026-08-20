@@ -26,6 +26,10 @@
 
     </form>
 
+    <form action="/">
+        <button>Register</button>
+    </form>
+
     
     @vite('resources/js/login.js')
 

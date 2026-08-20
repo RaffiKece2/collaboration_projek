@@ -38,6 +38,9 @@
 
     </form>
 
+    <form action="/loginPage">
+        <button>Login</button>
+    </form>
 
     @vite('resources/js/app.js')
 
