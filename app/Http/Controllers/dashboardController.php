@@ -58,7 +58,8 @@ class dashboardController extends Controller
 
         return response()->json([
 
-            'ok' => true
+            'ok' => true,
+            'user' => $user
 
         ]);
 

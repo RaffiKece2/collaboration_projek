@@ -119,11 +119,16 @@ if (jawaban.ok) {
 
         if (jawabFoto.ok) {
 
+            document.getElementById('fotoProfile').src = `storage/${jawabFoto.user.gambar}`
             document.getElementById('notif').textContent = "foto profile berhasil diubah"
-            document.getElementById('fotoProfile').src = `storage/${jawaban.user.gambar}`
+            FotoModel.close();
+            
+
+
 
         }else {
             document.getElementById('notif').textContent = "foto profile gagal diubah"
+            FotoModel.close();
         }
 
 
@@ -178,8 +183,10 @@ if (jawaban.ok) {
         if (jawabanPassword.ok) {
 
             document.getElementById('notifPassword').textContent = "pengubahaan password berhasil!"
+            changeModel.close();
         }else {
             document.getElementById('notifPassword').textContent = "password gagal"
+            changeModel.close();
 
         }
 
@@ -277,10 +284,12 @@ if (jawaban.ok) {
 
         if (editJawab.ok) {
             document.getElementById('notif').textContent = "edit profile berhasil"
-            document.getElementById('fotoProfile').src =  `storage/${jawaban.user.gambar}`
+            editModel.close();
+            
 
         }else {
             document.getElementById('notif').textContent = "edit gagal diedit"
+            editModel.close();
         }
 
     })
