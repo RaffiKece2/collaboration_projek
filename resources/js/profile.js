@@ -120,6 +120,7 @@ if (jawaban.ok) {
         if (jawabFoto.ok) {
 
             document.getElementById('notif').textContent = "foto profile berhasil diubah"
+            document.getElementById('fotoProfile').src = `storage/${jawaban.user.gambar}`
 
         }else {
             document.getElementById('notif').textContent = "foto profile gagal diubah"
