@@ -29,7 +29,7 @@ loginPage.addEventListener('submit', async function (e) {
 
     const jawaban = await response.json();
 
-    if (jawaban.ok) {
+    if (jawaban.ok && jawaban.data.user.status == "aktif") {
         
         localStorage.setItem('token',jawaban.token);
         document.getElementById('notif').textContent = "login berhasil!!"

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Register Admin</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
@@ -14,13 +14,8 @@
 
     <form id="registerPage">
 
-        <p>Pilih Role: </p>
-        <select id="role">
-            <option value="siswa">Siswa</option>
-            <option value="guru">Guru</option>
-            <option value="admin">Admin</option>
-            <option value="superadmin">Super Admin</option>
-        </select>
+        <p>Sebagai:</p>
+        <input id="role" value="Admin" type="text" readonly>
 
         <p>Nama: </p>
         <input id="nama" placeholder="Nama..." type="text">
@@ -40,6 +35,10 @@
 
     <form action="/loginPage">
         <button>Login</button>
+    </form>
+
+    <form action="/">
+        <button>Kembali</button>
     </form>
 
     @vite('resources/js/app.js')

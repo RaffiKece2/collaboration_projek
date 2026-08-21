@@ -8,17 +8,43 @@
 
         public function daftarAkun(array $data) {
 
+            if ($data['role'] == 'Admin' || $data['role'] == 'SuperAdmin') {
+
             $getInput = [
 
                 'name' => $data['nama'],
                 'email' => $data['email'],
                 'password' => $data['password'],
-                'role' => $data['role']
+                'role' => $data['role'],
+                'status' => 'aktif'
+                
+                ];
+
+
+
+             
+
+            }
+
+            $getInput = [
+
+                'name' => $data['nama'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'role' => $data['role'],
+                'status' => 'pending'
                 
             ];
 
-
             return User::create($getInput);
+
+
+            
+
+            
+
+
+           
 
         }
 
