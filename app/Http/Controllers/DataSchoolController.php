@@ -3,82 +3,49 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDataSchoolRequest;
+use App\Http\Requests\UpdateDataSchoolRequest;
 use App\Models\DataSchool;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
 class DataSchoolController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan halaman identitas sekolah.
+     * firstOrCreate([]) memastikan selalu ada 1 baris data,
+     * jadi view gak akan pernah nemu $dataSchool null.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        $dataSchool = DataSchool::firstOrCreate([]);
+
+        return view('setelan.HalamanSekolah', compact('dataSchool'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Update data identitas sekolah.
+     * Selalu nimpa baris yang sama, TIDAK PERNAH nambah row baru.
      */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreDataSchoolRequest $request)
-    {
-        //
-    }
+        public function update(StoreDataSchoolRequest $request): RedirectResponse
+{
+    $dataSchool = DataSchool::firstOrCreate([]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show()
-    {
-        $dataSchool = DataSchool::first();
-        return response()->json($dataSchool);
-    }
+    $data = $request->safe()->except('Logo');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(DataSchool $dataSchool)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(StoreDataSchoolRequest $request, DataSchool $dataSchool)
-    {
-        $validated = $request->validated();  // udah otomatis tervalidasi
-        $dataSchool = DataSchool::firstOrNew(); // kalau kosong, bikin instance baru (belum tersimpan)
-
-       if ($request->hasFile('Logo')) {
-        if ($dataSchool->Logo) {
+    if ($request->hasFile('Logo')) {
+        if ($dataSchool->Logo && Storage::disk('public')->exists($dataSchool->Logo)) {
             Storage::disk('public')->delete($dataSchool->Logo);
         }
-        $path = $request->file('Logo')->store('Logo', 'public');
-        $validated['Logo'] = $path;
+
+        $data['Logo'] = $request->file('Logo')->store('sekolah', 'public');
     }
 
-    $dataSchool->fill($validated);
-    $dataSchool->save(); // save() bisa dipakai buat insert ATAU update
+    $dataSchool->update($data);
 
-    return response()->json([
-        'message' => 'Data berhasil disimpan',
-        'data' => $dataSchool,
-    ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(DataSchool $dataSchool)
-    {
-        //
-    }
+    return redirect()
+        ->route('identitas.index')
+        ->with('success', 'Data sekolah berhasil diperbarui.');
+}
 }

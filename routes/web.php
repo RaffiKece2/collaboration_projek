@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataSchoolController;
+use App\Http\Controllers\JurusanController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,3 +27,8 @@ Route::get('/dashboard_siswa', function () {
 
 });
 
+Route::get('/identitas', [DataSchoolController::class, 'index'])->name('identitas.index');
+Route::put('/update/identitas', [DataSchoolController::class, 'update'])->name('identitas.update');
+
+
+Route::resource('/jurusan', JurusanController::class);
