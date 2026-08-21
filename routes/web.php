@@ -7,8 +7,35 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('rolePage');
 });
+
+Route::get('/register_siswa', function () {
+
+    return view('registerSiswa');
+
+});
+
+
+Route::get('/register_admin', function () {
+
+    return view('registerAdmin');
+
+});
+
+Route::get('/register_superadmin', function () {
+
+    return view('registerSuperAdmin');
+
+});
+
+Route::get('/register_guru', function () {
+
+    return view('registerGuru');
+
+});
+
+
 
 Route::get('/register', [AuthController::class, 'tambahAkun']);
 Route::post('/register', [AuthController::class, 'tambahAkun']);
