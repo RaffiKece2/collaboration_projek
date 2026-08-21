@@ -28,6 +28,12 @@
 
         }
 
+        public function getAkunById($id) {
+
+            return User::find($id);
+
+        }
+
 
     }
 

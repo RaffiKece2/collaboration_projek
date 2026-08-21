@@ -38,5 +38,53 @@ class AuthController extends Controller
 
     }
 
+    public function editProfile(Request $request) {
+
+
+        $user = $request->user();
+
+        $this->authServices->edit_profile($user->id,$request->all());
+
+        return response()->json([
+
+            'ok' => true,
+            
+
+        ]);
+
+
+    }
+
+    public function logout(Request $request) {
+
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+
+            'ok' => true
+
+        ]);
+
+    }
+
+    public function changePassword(Request $request) {
+
+        $user = $request->user();
+
+
+        $this->authServices->change_password($user, $request->all());
+
+        return response()->json([
+
+            'ok' => true
+
+        ]);
+
+    
+
+    }
+
+    
+
     //
 }

@@ -5,6 +5,7 @@
     use App\Repository\AuthRepository;
 
     use Illuminate\Support\Facades\Hash;
+    use Illuminate\Support\Facades\Storage;
 
 
 
@@ -32,7 +33,7 @@
 
             $user = $this->authRepository->getAkunByEmail($data['email']);
 
-            if ($user || Hash::check($data['password'], $user->password)) {
+            if ($user && Hash::check($data['password'], $user->password)) {
 
                 return response()->json([
 
@@ -52,6 +53,35 @@
 
 
         }
+
+
+        public function edit_profile($id, array $data) {
+
+            $data_user = $this->authRepository->getAkunById($id);
+
+            $data_user->update([
+
+                'name' => $data['nama'],
+                'email' => $data['email'],
+
+            ]);
+
+            return $data_user;
+            
+
+        }
+
+        public function change_password($data_user, array $data) {
+
+            
+            $data_user->password = Hash::make($data['password']);
+            $data_user->save();
+
+            return $data_user;
+
+        }
+
+    
 
     }
 
