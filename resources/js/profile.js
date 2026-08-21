@@ -43,6 +43,31 @@ const startPassword = document.getElementById('formPassword');
 const changeModel = document.getElementById('bentukPassword');
 const batalUbah = document.getElementById('batal');
 
+const FotoProfile = document.getElementById('FotoProfile');
+const cancelFoto = document.getElementById('cancelFoto');
+const FotoModel = document.getElementById('FotoModel');
+
+const startFoto = document.getElementById('ubahProfile');
+
+
+FotoProfile.addEventListener('click', () => {
+
+    FotoModel.showModal();
+})
+
+cancelFoto.addEventListener('click', () => {
+
+    FotoModel.close();
+})
+
+
+
+
+
+
+
+
+
 startPassword.addEventListener('click', () => {
 
     changeModel.showModal();
@@ -60,6 +85,53 @@ if (jawaban.ok) {
 
     document.getElementById('namaUser').textContent = jawaban.user.name
     document.getElementById('roleUser').textContent = `Role: ${jawaban.user.role}`
+    document.getElementById('fotoProfile').src = `storage/${jawaban.user.gambar}`
+
+
+    startFoto.addEventListener('submit', async function (e) {
+
+        e.preventDefault();
+
+        const file = document.getElementById('foto').files[0];
+
+        const formData = new FormData();
+
+        formData.append('_method', 'PATCH');
+        formData.append('foto', file);
+
+        const responseFoto = await fetch('change_profile', {
+
+            method: 'POST',
+
+            headers: {
+                'Accept' : 'application/json',
+
+                'Authorization' : `Bearer ${token}`,
+
+                'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').content
+            },
+
+            body: formData
+
+        });
+
+        const jawabFoto = await responseFoto.json();
+
+        if (jawabFoto.ok) {
+
+            document.getElementById('notif').textContent = "foto profile berhasil diubah"
+
+        }else {
+            document.getElementById('notif').textContent = "foto profile gagal diubah"
+        }
+
+
+
+    })
+
+
+
+
 
 
     startChange.addEventListener('submit', async function (e) {
@@ -173,21 +245,15 @@ if (jawaban.ok) {
 
         const nama = document.getElementById('nama').value;
         const email = document.getElementById('email').value;
-        const file = document.getElementById('file').value
-
-        const formData = new FormData();
-
-        formData.append('nama', nama);
-        formData.append('email',email);
-        formData.append('foto',file);
 
 
-        const editResponse = await fetch(`/edit_profile/${jawaban.user.id}`,{
+
+        const editResponse = await fetch(`/edit_profile`,{
 
             method: 'PATCH',
 
             headers: {
-                'Content-Type' : 'application/json',
+                'Content-Type': 'application/json',
                 'Accept' : 'application/json',
                 'Authorization' : `Bearer ${token}`,
 
@@ -195,7 +261,12 @@ if (jawaban.ok) {
             },
             
 
-            body: formData
+            body: JSON.stringify({
+
+                nama: nama,
+                email: email
+
+            })
 
         });
 
@@ -205,7 +276,7 @@ if (jawaban.ok) {
 
         if (editJawab.ok) {
             document.getElementById('notif').textContent = "edit profile berhasil"
-            document.getElementById('fotoProfile').src = jawaban.user.gambar
+            document.getElementById('fotoProfile').src =  `storage/${jawaban.user.gambar}`
 
         }else {
             document.getElementById('notif').textContent = "edit gagal diedit"

@@ -12,7 +12,7 @@
     <p id="notifLogout"></p>
     <p id="notifPassword"></p>
 
-    <img id="fotoProfile" alt="Profile">
+    <img id="fotoProfile" alt="Profile" width="50px" height="50px">
 
 
     <div>
@@ -24,6 +24,22 @@
 
 
     <button id="formPassword">Change Password</button>
+
+    <button type="button" id="FotoProfile">Ubah Foto Profile</button>
+
+    <dialog id="FotoModel">
+
+        <form id="ubahProfile" enctype="multipart/form-data">
+
+            <p>Foto Profile:</p>
+            <input id="foto" type="file" accept=".jpg,.jpeg,.png">
+
+            <button type="submit">Ganti Foto</button>
+            <button type="button" id="cancelFoto">batal</button>
+
+        </form>
+
+    </dialog>
 
 
     <dialog id="bentukPassword">
@@ -60,9 +76,6 @@
         <h2>Edit Profile:</h2>
 
         <form id="profileForm">
-
-            <p>Foto Profile: </p>
-            <input id="file"  type="file" accept=".jpg,.jpeg,.png">
 
             <p>Nama: </p>
             <input id="nama" placeholder="Nama" type="text">

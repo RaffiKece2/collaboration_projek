@@ -38,17 +38,17 @@ class AuthController extends Controller
 
     }
 
-    public function editProfile( $id,Request $request) {
+    public function editProfile(Request $request) {
 
-        $file = $request->file('foto');
 
-        $path = $file->store('profile','public');
+        $user = $request->user();
 
-        $this->authServices->edit_profile($id,$request->all(), $path);
+        $this->authServices->edit_profile($user->id,$request->all());
 
         return response()->json([
 
-            'ok' => true
+            'ok' => true,
+            
 
         ]);
 
