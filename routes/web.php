@@ -38,9 +38,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/dashboard_data', [dashboardController::class, 'dashboard']);
     Route::get('/profile/data', [dashboardController::class, 'profile']);
-    Route::patch('/edit_profile/{id}', [AuthController::class, 'editProfile']);
+    Route::patch('/edit_profile', [AuthController::class, 'editProfile']);
 
     Route::patch('/change_password', [AuthController::class, 'changePassword']);
+    Route::patch('/change_profile', [dashboardController::class, 'changeFoto']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 

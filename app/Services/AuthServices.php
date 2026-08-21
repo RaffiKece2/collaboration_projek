@@ -5,6 +5,7 @@
     use App\Repository\AuthRepository;
 
     use Illuminate\Support\Facades\Hash;
+    use Illuminate\Support\Facades\Storage;
 
 
 
@@ -54,7 +55,7 @@
         }
 
 
-        public function edit_profile($id, array $data, $path) {
+        public function edit_profile($id, array $data) {
 
             $data_user = $this->authRepository->getAkunById($id);
 
@@ -62,11 +63,11 @@
 
                 'name' => $data['nama'],
                 'email' => $data['email'],
-                'gambar' => $path
 
             ]);
 
             return $data_user;
+            
 
         }
 
@@ -79,6 +80,8 @@
             return $data_user;
 
         }
+
+    
 
     }
 
